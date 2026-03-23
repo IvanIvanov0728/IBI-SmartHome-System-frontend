@@ -372,7 +372,28 @@ export default function AdminPage() {
                         <DialogContent className="glass-panel bg-white/80 backdrop-blur-2xl rounded-[2rem]">
                           <DialogHeader><DialogTitle>Add Room to {house.name}</DialogTitle></DialogHeader>
                           <div className="space-y-4 py-4">
-                            <div className="space-y-2"><Label>Room Name</Label><Input value={newRoomName} onChange={(e) => setNewRoomName(e.target.value)} placeholder="e.g. Kitchen" /></div>
+                            <div className="space-y-2">
+                              <Label>Room Name</Label>
+                              <Select value={newRoomName} onValueChange={setNewRoomName}>
+                                <SelectTrigger><SelectValue placeholder="Select Room Name" /></SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="Living Room">Living Room</SelectItem>
+                                  <SelectItem value="Kitchen">Kitchen</SelectItem>
+                                  <SelectItem value="Bedroom">Bedroom</SelectItem>
+                                  <SelectItem value="Bathroom">Bathroom</SelectItem>
+                                  <SelectItem value="Dining Room">Dining Room</SelectItem>
+                                  <SelectItem value="Office">Office</SelectItem>
+                                  <SelectItem value="Hallway">Hallway</SelectItem>
+                                  <SelectItem value="Garage">Garage</SelectItem>
+                                  <SelectItem value="Garden">Garden</SelectItem>
+                                  <SelectItem value="Guest Room">Guest Room</SelectItem>
+                                  <SelectItem value="Attic">Attic</SelectItem>
+                                  <SelectItem value="Basement">Basement</SelectItem>
+                                  <SelectItem value="Laundry Room">Laundry Room</SelectItem>
+                                  <SelectItem value="Corridor">Corridor</SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </div>
                             <div className="space-y-2">
                               <Label>Floor</Label>
                               <Select value={newRoomFloor} onValueChange={setNewRoomFloor}>
@@ -425,7 +446,28 @@ export default function AdminPage() {
                                 <DialogContent className="glass-panel bg-white/80 backdrop-blur-2xl rounded-[2rem]">
                                   <DialogHeader><DialogTitle>Edit Room: {room.name}</DialogTitle></DialogHeader>
                                   <div className="space-y-4 py-4">
-                                    <div className="space-y-2"><Label>Room Name</Label><Input value={editRoomName} onChange={(e) => setEditRoomName(e.target.value)} /></div>
+                                    <div className="space-y-2">
+                                      <Label>Room Name</Label>
+                                      <Select value={editRoomName} onValueChange={setEditRoomName}>
+                                        <SelectTrigger><SelectValue /></SelectTrigger>
+                                        <SelectContent>
+                                          <SelectItem value="Living Room">Living Room</SelectItem>
+                                          <SelectItem value="Kitchen">Kitchen</SelectItem>
+                                          <SelectItem value="Bedroom">Bedroom</SelectItem>
+                                          <SelectItem value="Bathroom">Bathroom</SelectItem>
+                                          <SelectItem value="Dining Room">Dining Room</SelectItem>
+                                          <SelectItem value="Office">Office</SelectItem>
+                                          <SelectItem value="Hallway">Hallway</SelectItem>
+                                          <SelectItem value="Garage">Garage</SelectItem>
+                                          <SelectItem value="Garden">Garden</SelectItem>
+                                          <SelectItem value="Guest Room">Guest Room</SelectItem>
+                                          <SelectItem value="Attic">Attic</SelectItem>
+                                          <SelectItem value="Basement">Basement</SelectItem>
+                                          <SelectItem value="Laundry Room">Laundry Room</SelectItem>
+                                          <SelectItem value="Corridor">Corridor</SelectItem>
+                                        </SelectContent>
+                                      </Select>
+                                    </div>
                                     <div className="space-y-2">
                                       <Label>Floor</Label>
                                       <Select value={editRoomFloor} onValueChange={setEditRoomFloor}>

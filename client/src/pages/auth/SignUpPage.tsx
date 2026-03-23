@@ -35,7 +35,7 @@ export default function SignUpPage() {
         <div className="glass-panel p-8 md:p-10 rounded-[2.5rem] shadow-xl border-white/50 bg-white/60 backdrop-blur-xl">
           <div className="text-center mb-8">
             <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xl font-bold font-display mx-auto mb-4 shadow-lg shadow-primary/20">
-              L
+              IBI
             </div>
             <h1 className="text-2xl font-display font-bold text-gray-900 mb-2">Create Account</h1>
             <p className="text-muted-foreground">Set up your smart home journey</p>

@@ -143,13 +143,13 @@ export default function Dashboard() {
   const name = roomName.toLowerCase();
   
   if (name.includes("kitchen")) return ROOM_IMAGES.kitchen;
-  if (name.includes("bedroom") || name.includes("sleeping")) return ROOM_IMAGES.bedroom;
+  if (name.includes("bedroom") || name.includes("sleeping") || name.includes("guest")) return ROOM_IMAGES.bedroom;
   if (name.includes("bathroom") || name.includes("restroom")) return ROOM_IMAGES.bathroom;
-  if (name.includes("office")) return ROOM_IMAGES.office;
-  if (name.includes("outdoor")) return ROOM_IMAGES.outside;
-  if (name.includes("hallway")) return ROOM_IMAGES.hallway;
-  if (name.includes("mudroom")) return ROOM_IMAGES.mudroom;
-  if (name.includes("living") || name.includes("lounge")) return ROOM_IMAGES.living;
+  if (name.includes("office") || name.includes("study")) return ROOM_IMAGES.office;
+  if (name.includes("outdoor") || name.includes("garden") || name.includes("yard")) return ROOM_IMAGES.outside;
+  if (name.includes("hallway") || name.includes("corridor")) return ROOM_IMAGES.hallway;
+  if (name.includes("mudroom") || name.includes("laundry") || name.includes("garage") || name.includes("attic") || name.includes("basement")) return ROOM_IMAGES.mudroom;
+  if (name.includes("living") || name.includes("lounge") || name.includes("dining")) return ROOM_IMAGES.living;
   
   return ROOM_IMAGES.default;
 };
@@ -271,8 +271,7 @@ const handleBrightnessChange = async (
               {activeRoom.name}
             </h2>
             <p className="text-white/80 font-light">
-              {activeRoom.devices.length} devices active • The Temp of the current room°C • Air
-              Quality Good
+              {activeRoom.devices.length} devices active in this room
             </p>
           </div>
         </div>

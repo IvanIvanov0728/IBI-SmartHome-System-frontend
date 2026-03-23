@@ -69,9 +69,6 @@ export default function LightingPage() {
           <h1 className="text-3xl font-display font-bold text-gray-900">Lighting Control</h1>
           <p className="text-muted-foreground">Manage your home's ambience</p>
         </div>
-        <Button className="rounded-full gap-2 bg-primary text-primary-foreground hover:bg-primary/90">
-          <Plus className="w-4 h-4" /> Add Device
-        </Button>
       </header>
 
       {/* PRIMARY TABS (FLOORS) */}

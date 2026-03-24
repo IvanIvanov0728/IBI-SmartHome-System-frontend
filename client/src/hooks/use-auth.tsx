@@ -57,7 +57,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const loginMutation = useMutation({
     mutationFn: async (credentials: any) => {
-      await apiRequest("POST", `${API_BASE_URL}/api/auth/login`, credentials);
+      await apiRequest("POST", `${API_BASE_URL}/api/Auth/login`, credentials);
       // After login, we need to fetch status to get user info
       const statusRes = await fetch(`${API_BASE_URL}/api/auth/status`, { credentials: "include" });
       const data = await statusRes.json();

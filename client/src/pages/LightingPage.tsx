@@ -5,6 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getLightsData, LightData, setLight, setBrightness } from "@/api/lighting";
+import { LoadingScreen } from "@/components/ui/loading-screen";
 
 export default function LightingPage() {
   const [loading, setLoading] = useState(true);
@@ -60,7 +61,11 @@ export default function LightingPage() {
     }, {});
   }, [data]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return (
+    <Shell>
+      <LoadingScreen message="Зареждане на осветлението..." />
+    </Shell>
+  );
 
   return (
     <Shell>

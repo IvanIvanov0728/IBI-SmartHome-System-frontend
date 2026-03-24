@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import * as signalR from '@microsoft/signalr';
+import { API_BASE_URL } from "@/lib/api-config";
 
 export type DeviceUpdate = {
   deviceId: number;
@@ -17,7 +18,7 @@ class SignalRService {
   private static instance: SignalRService;
 
   private constructor() {
-    const hubUrl = (import.meta.env.VITE_API_URL || 'http://localhost:7244') + '/smartHomeHub';
+    const hubUrl = API_BASE_URL + '/smartHomeHub';
     
     this.connection = new signalR.HubConnectionBuilder()
       .withUrl(hubUrl, {

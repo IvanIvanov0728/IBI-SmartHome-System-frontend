@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://localhost:7244';
+import { API_BASE_URL } from "@/lib/api-config";
 
 export interface UserSearchResult {
     id: string;

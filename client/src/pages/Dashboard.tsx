@@ -21,6 +21,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { Button } from "@/components/ui/button";
 import { useSignalR, DeviceUpdate } from "@/hooks/use-signalr";
 import { useCallback } from "react";
+import { LoadingScreen } from "@/components/ui/loading-screen";
 
 export default function Dashboard() {
   const { user, logoutMutation } = useAuth();
@@ -112,7 +113,7 @@ export default function Dashboard() {
   if (loading) {
     return (
       <Shell>
-        <div className="p-8 text-muted-foreground">Loading dashboard…</div>
+        <LoadingScreen message="Зареждане на таблото..." />
       </Shell>
     );
   }

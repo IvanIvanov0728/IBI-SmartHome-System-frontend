@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/dialog";
 import { getUserProfile, updateUserProfile, getUserSettings, updateUserSettings, UserProfile, UserSettings } from "@/api/settings";
 import { useTheme } from "@/hooks/use-theme";
+import { LoadingScreen } from "@/components/ui/loading-screen";
 
 export default function SettingsPage() {
   const { logoutMutation } = useAuth();
@@ -112,9 +113,7 @@ export default function SettingsPage() {
   if (isLoadingProfile || isLoadingSettings) {
     return (
       <Shell>
-        <div className="flex items-center justify-center h-[60vh]">
-          <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
-        </div>
+        <LoadingScreen message="Зареждане на профила..." />
       </Shell>
     );
   }
@@ -130,7 +129,7 @@ export default function SettingsPage() {
   }
 
   if (isLoadingProfile || isLoadingSettings || !userSettings || !profileForm) {
-    return <div className="flex justify-center p-20"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" /></div>;
+    return <LoadingScreen fullScreen message="Инициализиране..." />;
   }
 
   return (

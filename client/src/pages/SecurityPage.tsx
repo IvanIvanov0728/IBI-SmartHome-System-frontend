@@ -15,6 +15,7 @@ import {
   SecurityOverview, 
   ActivityLogEntry 
 } from "../api/security";
+import { LoadingScreen } from "@/components/ui/loading-screen";
 import {
   Dialog,
   DialogContent,
@@ -58,12 +59,7 @@ export default function SecurityPage() {
   if (isLoading) {
     return (
       <Shell>
-        <div className="flex items-center justify-center h-[60vh]">
-          <div className="flex flex-col items-center gap-4">
-            <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
-            <p className="text-muted-foreground animate-pulse">Loading security data...</p>
-          </div>
-        </div>
+        <LoadingScreen message="Зареждане на данните за сигурност..." />
       </Shell>
     );
   }

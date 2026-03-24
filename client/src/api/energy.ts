@@ -1,6 +1,6 @@
 // Smart-Home-OS/client/src/api/energy.ts
 
-const API_BASE_URL = 'https://localhost:7244';
+import { API_BASE_URL } from "@/lib/api-config";
 
 export interface WeeklyDataPoint {
   name: string;

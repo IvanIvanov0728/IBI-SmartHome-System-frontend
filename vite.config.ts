@@ -26,7 +26,7 @@ export default defineConfig({
     strictPort: true,
     proxy: {
       "/api": {
-        target: "https://localhost:7244",
+        target: "https://ibi-smarthome-system-production.up.railway.app",
         changeOrigin: true,
         secure: false,
       },

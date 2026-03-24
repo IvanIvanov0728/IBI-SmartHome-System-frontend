@@ -17,6 +17,7 @@ import { Button } from "@/components/ui/button";
 import solarBg from "@assets/generated_images/minimalist_solar_panels_on_a_modern_roof.png";
 import { getEnergyData, EnergyData } from "@/api/energy";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { LoadingScreen } from "@/components/ui/loading-screen";
 
 export default function EnergyPage() {
   const [energyData, setEnergyData] = useState<EnergyData | null>(null);
@@ -41,12 +42,7 @@ export default function EnergyPage() {
   if (loading) {
     return (
       <Shell>
-        <div className="flex items-center justify-center h-[60vh]">
-          <div className="flex flex-col items-center gap-4">
-            <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
-            <p className="text-muted-foreground animate-pulse">Analyzing power grid...</p>
-          </div>
-        </div>
+        <LoadingScreen message="Анализиране на енергийната мрежа..." />
       </Shell>
     );
   }

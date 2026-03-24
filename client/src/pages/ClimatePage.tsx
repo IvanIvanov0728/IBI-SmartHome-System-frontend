@@ -9,6 +9,7 @@ import {
   saveClimateScheduleEntry, 
   ClimateSchedule 
 } from "@/api/climate";
+import { LoadingScreen } from "@/components/ui/loading-screen";
 
 // --- Configuration Constants for Dropdowns ---
 const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
@@ -102,9 +103,9 @@ export default function ClimatePage() {
              </div>
              
              <div className="space-y-4">
-                {loading && <p>Loading schedule...</p>}
+                {loading && <LoadingScreen message="Зареждане на графика..." />}
                 {error && <p className="text-red-500">Error: {error}</p>}
-                {schedule.map((item) => (
+                {!loading && schedule.map((item) => (
                  <div key={item.id} className="flex items-center justify-between p-4 rounded-xl hover:bg-gray-50 transition-colors border border-transparent hover:border-gray-100">
                    <div className="flex items-center gap-4">
                      <div className="p-2 bg-gray-100 rounded-lg text-gray-500"><Clock className="w-4 h-4" /></div>

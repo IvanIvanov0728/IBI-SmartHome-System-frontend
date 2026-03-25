@@ -35,10 +35,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     error,
     isLoading,
   } = useQuery<User | null, Error>({
-    queryKey: [`${API_BASE_URL}/api/Auth/status`],
+    queryKey: [`${API_BASE_URL}/api/auth/status`],
     queryFn: async () => {
       try {
-        const res = await fetch(`${API_BASE_URL}/api/Auth/status`, { credentials: "include" });
+        const res = await fetch(`${API_BASE_URL}/api/auth/status`, { credentials: "include" });
         if (res.status === 401) return null;
         if (!res.ok) throw new Error("Failed to fetch Auth status");
         const data = await res.json();
@@ -57,16 +57,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const loginMutation = useMutation({
     mutationFn: async (credentials: any) => {
-      await apiRequest("POST", `${API_BASE_URL}/api/Auth/login`, credentials);
+      await apiRequest("POST", `${API_BASE_URL}/api/auth/login`, credentials);
       // After login, we need to fetch status to get user info
-      const statusRes = await fetch(`${API_BASE_URL}/api/Auth/status`, { credentials: "include" });
+      const statusRes = await fetch(`${API_BASE_URL}/api/auth/status`, { credentials: "include" });
       const data = await statusRes.json();
       const roleClaim = data.claims?.find((c: any) => c.type.includes("role"))?.value || "User";
       const emailClaim = data.claims?.find((c: any) => c.type.includes("emailaddress"))?.value || data.username;
       return { id: data.username, username: data.username, email: emailClaim, role: roleClaim };
     },
     onSuccess: (user) => {
-      queryClient.setQueryData([`${API_BASE_URL}/api/Auth/status`], user);
+      queryClient.setQueryData([`${API_BASE_URL}/api/auth/status`], user);
     },
     onError: (error: Error) => {
       toast({
@@ -79,15 +79,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const registerMutation = useMutation({
     mutationFn: async (credentials: any) => {
-      await apiRequest("POST", `${API_BASE_URL}/api/Auth/register`, credentials);
-      const statusRes = await fetch(`${API_BASE_URL}/api/Auth/status`, { credentials: "include" });
+      await apiRequest("POST", `${API_BASE_URL}/api/auth/register`, credentials);
+      const statusRes = await fetch(`${API_BASE_URL}/api/auth/status`, { credentials: "include" });
       const data = await statusRes.json();
       const roleClaim = data.claims?.find((c: any) => c.type.includes("role"))?.value || "User";
       const emailClaim = data.claims?.find((c: any) => c.type.includes("emailaddress"))?.value || data.username;
       return { id: data.username, username: data.username, email: emailClaim, role: roleClaim };
     },
     onSuccess: (user) => {
-      queryClient.setQueryData([`${API_BASE_URL}/api/Auth/status`], user);
+      queryClient.setQueryData([`${API_BASE_URL}/api/auth/status`], user);
     },
     onError: (error: Error) => {
       toast({
@@ -100,10 +100,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const logoutMutation = useMutation({
     mutationFn: async () => {
-      await apiRequest("POST", `${API_BASE_URL}/api/Auth/logout`);
+      await apiRequest("POST", `${API_BASE_URL}/api/auth/logout`);
     },
     onSuccess: () => {
-      queryClient.setQueryData([`${API_BASE_URL}/api/Auth/status`], null);
+      queryClient.setQueryData([`${API_BASE_URL}/api/auth/status`], null);
     },
     onError: (error: Error) => {
       toast({

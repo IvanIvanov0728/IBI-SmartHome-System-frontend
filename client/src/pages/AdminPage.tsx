@@ -88,18 +88,49 @@ export default function AdminPage() {
   const [actionType, setActionType] = useState("");
 
   // --- Queries ---
-  const { data: hierarchy } = useQuery<any[]>({
-    queryKey: [`${API_BASE_URL}/api/admin/hierarchy`],
+  const { data: hierarchy, isLoading, error } = useQuery<any[]>({
+    queryKey: ['admin-hierarchy'],
+    queryFn: async () => {
+      const response = await fetch(`${API_BASE_URL}/api/admin/hierarchy`, {
+        method: "GET",
+        headers: {
+          'Accept': 'application/json'
+        },
+        credentials: "include" 
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status} ${response.statusText}`);
+      }
+
+      return response.json();
+    },
   });
 
-  const { data: logs } = useQuery<any[]>({
-    queryKey: [`${API_BASE_URL}/api/admin/logs`],
+  const { data: logs = [] } = useQuery<any[]>({
+    queryKey: ['admin-logs'], // Use a clean string for the key
+    queryFn: async () => {
+      const response = await fetch(`${API_BASE_URL}/api/admin/logs`, {
+        method: "GET",
+        credentials: "include" // CRITICAL for cookies
+      });
+      if (!response.ok) throw new Error("Failed to fetch logs");
+      return response.json();
+    },
     refetchInterval: 5000, 
   });
 
-  const { data: rules } = useQuery<any[]>({
-    queryKey: [`${API_BASE_URL}/api/admin/rules`],
-  });
+  const { data: rules = [] } = useQuery<any[]>({
+    queryKey: ['admin-rules'],
+    queryFn: async () => {
+      const response = await fetch(`${API_BASE_URL}/api/admin/rules`, {
+        method: "GET",
+        credentials: "include" 
+      });
+      if (!response.ok) throw new Error("Failed to fetch rules");
+      return response.json();
+    },
+});
 
   // --- Search Effect ---
   useEffect(() => {

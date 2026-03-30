@@ -46,8 +46,7 @@ import {
 import { AdminAnalytics, searchUsers, UserSearchResult, updateRoom, deleteRoom, updateDevice, deleteDevice } from "@/api/admin";
 import { EmptyMedia } from "@/components/ui/empty";
 import * as adminApi from "@/api/admin";
-
-const API_BASE_URL = 'https://localhost:7244';
+import { API_BASE_URL } from "@/lib/api-config";
 
 export default function AdminPage() {
   const [activeTab, setActiveTab] = useState("users");

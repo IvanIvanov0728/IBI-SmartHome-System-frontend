@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { AuthProvider, useAuth } from "@/hooks/use-auth";
 import { ThemeProvider } from "@/hooks/use-theme";
 import NotFound from "@/pages/not-found";
+import AccessDenied from "@/pages/AccessDenied";
 import Dashboard from "@/pages/Dashboard";
 import LightingPage from "@/pages/LightingPage";
 import ClimatePage from "@/pages/ClimatePage";
@@ -37,7 +38,6 @@ function ProtectedRoute({ component: Component, path }: { component: React.Compo
 function AdminProtectedRoute({ component: Component, path }: { component: React.ComponentType, path: string }) {
   const { user, isLoading } = useAuth();
 
-
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -46,9 +46,8 @@ function AdminProtectedRoute({ component: Component, path }: { component: React.
     );
   }
 
-  // Use the exact case from your log: "Admin"
   if (!user || user.role?.toLocaleLowerCase() !== "admin") {
-    return <Redirect to="/" />;
+    return <Redirect to="/access-denied" />;
   }
 
   return <Component />;
@@ -65,6 +64,7 @@ function Router() {
       <ProtectedRoute path="/security" component={SecurityPage} />
       <ProtectedRoute path="/settings" component={SettingsPage} />
       <ProtectedRoute path="/energy" component={EnergyPage} />
+      <ProtectedRoute path="/access-denied" component={AccessDenied} />
       <AdminProtectedRoute path="/admin" component={AdminPage} />
       
       <Route component={NotFound} />

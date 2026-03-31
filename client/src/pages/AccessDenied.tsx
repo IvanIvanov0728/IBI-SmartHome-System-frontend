@@ -1,34 +1,46 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { ShieldAlert, Home } from "lucide-react";
+import React from "react";
 import { Link } from "wouter";
+import { Shell } from "@/components/layout/Shell";
+import { ShieldAlert, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import abstractBg from "@assets/generated_images/abstract_soft_gradient_waves_in_beige_and_white.png";
 
 export default function AccessDenied() {
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-slate-50 dark:bg-slate-950">
-      <Card className="w-full max-w-lg mx-4 border-none shadow-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md">
-        <CardContent className="pt-12 pb-12 text-center">
-          <div className="mb-6 flex justify-center">
-            <div className="p-4 bg-amber-100 dark:bg-amber-900/30 rounded-full">
-              <ShieldAlert className="h-16 w-16 text-amber-500" />
+    <Shell>
+      <div className="relative min-h-[70vh] flex flex-col items-center justify-center text-center px-4 overflow-hidden rounded-[2.5rem] shadow-2xl border border-white/20">
+        {/* Background with Overlay */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src={abstractBg} 
+            alt="Background" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px]"></div>
+        </div>
+
+        <div className="relative z-10 max-w-2xl w-full py-16 px-8 rounded-3xl bg-white/30 backdrop-blur-xl border border-white/50 shadow-xl">
+          <div className="mb-8 flex justify-center">
+            <div className="p-6 bg-amber-500/10 rounded-full ring-8 ring-amber-500/5">
+              <ShieldAlert className="h-20 w-20 text-amber-500 animate-pulse" />
             </div>
           </div>
           
-          <h1 className="text-4xl font-extrabold text-slate-900 dark:text-white mb-2">Access Denied</h1>
-          <h2 className="text-xl font-semibold text-slate-700 dark:text-slate-300 mb-6">Unauthorized Control</h2>
+          <h1 className="text-6xl font-display font-black text-gray-900 mb-4 tracking-tight">ACCESS DENIED</h1>
+          <h2 className="text-2xl font-display font-bold text-gray-800 mb-6">Security Restriction</h2>
           
-          <p className="text-slate-600 dark:text-slate-400 mb-10 max-w-sm mx-auto">
-            You don't have the administrative privileges required to access this part of the Smart Home System.
+          <p className="text-xl text-gray-600 mb-12 leading-relaxed max-w-md mx-auto">
+            You don't have the administrative privileges required to access this high-security area of your Smart Home System.
           </p>
 
           <Link href="/">
-            <Button className="gap-2 h-12 px-8 text-lg font-medium shadow-lg hover:scale-105 transition-transform" variant="outline">
-              <Home className="h-5 w-5" />
-              Return Home
+            <Button size="lg" className="h-14 px-10 text-lg font-semibold rounded-2xl shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all gap-3 bg-gray-900 text-white hover:bg-black">
+              <Home className="h-6 w-6" />
+              Return to Dashboard
             </Button>
           </Link>
-        </CardContent>
-      </Card>
-    </div>
+        </div>
+      </div>
+    </Shell>
   );
 }

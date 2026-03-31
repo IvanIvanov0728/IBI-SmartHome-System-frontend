@@ -1,35 +1,47 @@
-import { Card, CardContent } from "@/components/ui/card";
+import React from "react";
+import { Link } from "wouter";
+import { Shell } from "@/components/layout/Shell";
 import { Home, AlertCircle } from "lucide-react";
-import {Link} from "wouter";
 import { Button } from "@/components/ui/button";
+import abstractBg from "@assets/generated_images/abstract_soft_gradient_waves_in_beige_and_white.png";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-slate-50 dark:bg-slate-950">
-      <Card className="w-full max-w-lg mx-4 border-none shadow-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md">
-        <CardContent className="pt-12 pb-12 text-center">
-          <div className="mb-6 flex justify-center">
-            <div className="p-4 bg-red-100 dark:bg-red-900/30 rounded-full">
-              <AlertCircle className="h-16 w-16 text-red-500" />
+    <Shell>
+      <div className="relative min-h-[70vh] flex flex-col items-center justify-center text-center px-4 overflow-hidden rounded-[2.5rem] shadow-2xl border border-white/20">
+        {/* Background with Overlay */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src={abstractBg} 
+            alt="Background" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px]"></div>
+        </div>
+
+        <div className="relative z-10 max-w-2xl w-full py-16 px-8 rounded-3xl bg-white/30 backdrop-blur-xl border border-white/50 shadow-xl">
+          <div className="mb-8 flex justify-center">
+            <div className="p-6 bg-red-500/10 rounded-full ring-8 ring-red-500/5">
+              <AlertCircle className="h-20 w-20 text-red-500 animate-pulse" />
             </div>
           </div>
           
-          <h1 className="text-5xl font-extrabold text-slate-900 dark:text-white mb-2">404</h1>
-          <h2 className="text-2xl font-semibold text-slate-700 dark:text-slate-300 mb-6">Room Not Found</h2>
+          <h1 className="text-8xl font-display font-black text-gray-900 mb-4 tracking-tighter">404</h1>
+          <h2 className="text-3xl font-display font-bold text-gray-800 mb-6">Room Not Found</h2>
           
-          <p className="text-slate-600 dark:text-slate-400 mb-10 max-w-sm mx-auto">
+          <p className="text-xl text-gray-600 mb-12 leading-relaxed max-w-md mx-auto">
             It seems you've wandered into an unmapped area of your Smart Home. 
             The page you're looking for doesn't exist or has been moved.
           </p>
 
           <Link href="/">
-            <Button className="gap-2 h-12 px-8 text-lg font-medium shadow-lg hover:scale-105 transition-transform">
-              <Home className="h-5 w-5" />
+            <Button size="lg" className="h-14 px-10 text-lg font-semibold rounded-2xl shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all gap-3 bg-gray-900 text-white hover:bg-black">
+              <Home className="h-6 w-6" />
               Back to Dashboard
             </Button>
           </Link>
-        </CardContent>
-      </Card>
-    </div>
+        </div>
+      </div>
+    </Shell>
   );
 }
